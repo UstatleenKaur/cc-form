@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Crejo CC Form</title>
+</head>
+
+<body class="flex w-100 justify-center mh4">
+    <div class="flex flex-column justify-center mv3 w-40 ph5">
+        <div class="flex br3 pa4 relative" id="card-container"></div>
+        <form class="flex flex-column w-100">
+            <!-- validations for card number - size-19 -->
+            <input type="text" class="mt3 pa2" placeholder="Card Number" name='card-number' size="19" />
+            <input type="text" class="mt3 pa2" placeholder="Name" name='card-name' />
+            <div class="flex justify-between mt3">
+                <input type="text" class="pa2 w-50 mr3" placeholder="Valid Thru" name='card-expiry' />
+                <input type="text" class="pa2 w-50" placeholder="CVV" name='card-cvv' size="3" />
+            </div>
+            <button class="bg-blue white ttu bn no-outline mt3 pa2">Pay</button>
+        </form>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
