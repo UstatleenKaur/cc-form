@@ -1,10 +1,26 @@
 function Card (options) {
     this.values = {};
     this.defaultValues = {
-        name: '',
+        name: 'YOUR NAME HERE',
         cvv: '***',
-        number: '____ ____ ____ ____',
-        expiry: '__ / __',
+        number: '•••• •••• •••• ••••',
+        expiry: '••/••',
+    }
+    
+    this.attachEventListeners();
+    this.cardTemplate = document.getElementById('card-container');
+    this.updateUI();
+}
+
+Card.prototype.attachEventListeners = function () {
+    const cvv = document.querySelector('[name="card-cvv"]');
+    if (cvv) {
+        cvv.addEventListener('focus', () => {
+            this.cardTemplate.querySelector('.card').classList.add('card--flipped');
+        });
+        cvv.addEventListener('blur', () => {
+            this.cardTemplate.querySelector('.card').classList.remove('card--flipped');
+        });
     }
     document.addEventListener('keydown', ev => {
         const el = ev.target;
@@ -34,10 +50,7 @@ function Card (options) {
             this.updateUI(name);
         }
     });
-
-    this.cardTemplate = document.getElementById('card-container');
-    this.updateUI();
-}
+};
 
 Card.prototype.cNumChange = function (ev) {
 
@@ -131,7 +144,30 @@ Card.prototype.updateUI = function (key) {
     this.cardTemplate.innerHTML = this.updateTemplate(this.template);
 };
 
-Card.prototype.template = '' + '<div class="flex br3 overflow-hidden shadow-2 relative card border-box w-100 mb0 mb4-l card">' + '<div class="flex flex-column pa3 pa4-l flex-grow-1 relative  card-front">' + '<div class="card-shiny"></div>' + '<div class="card-cvv card-display">{{cvv}}</div>' + '<div class="card-number card-display">{{number}}</div>' + '<div class="card-name card-display">{{name}}</div>' + '<div class="card-expiry card-display" data-before="{{monthYear}}" data-after="{{validDate}}">{{expiry}}</div>' + '</div>' + '<div class="card-back flex flex-column items-center justify-center flex-grow-1 pa3 absolute w-100 h-100 top-0 left-0">' + '<div class="card-bar"></div>' + '<div class="card-cvv card-display">{{cvv}}</div>' + '<div class="card-shiny"></div>' + '</div>' + '</div>';
+Card.prototype.template = `
+    <div class="flex br3 overflow-hidden shadow-2 relative card border-box w-100 mb0 mb4-l card">
+    <div class="flex flex-column pa3 pa4-l flex-grow-1 relative  card-front justify-end">
+        <div class="card-shiny"></div>
+        <div class="card-number card-display white mb4 f2">{{number}}</div>
+        <div class="flex justify-between">
+            <div class="card-name card-display white">{{name}}</div>
+            <div class="flex flex-column">
+                <span class="white">valid thru</span>
+                <div class="card-expiry card-display white mt2" data-before="{{monthYear}}" data-after="{{validDate}}">{{expiry}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="card-back flex flex-column items-center justify-center flex-grow-1 pa3 absolute w-100 h-100 top-0 left-0">
+        <div class="card-bar"></div>
+        <div class="card-bar"></div>
+        <div class="flex justify-between w-90 items-center">
+            <div class="white-bar"></div>
+            <div class="card-cvv card-d≥isplay white">{{cvv}}</div>
+        </div>
+        <div class="card-shiny"></div>
+    </div>
+    </div>
+`;
 
 Card.prototype.updateTemplate = function(tpl) {
     return tpl.replace(/\{\{(.*?)\}\}/g, (match, key, str) => {

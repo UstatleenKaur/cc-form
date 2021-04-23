@@ -4,60 +4,23 @@ body {
     font-family: 'Roboto';
 }
 
-#card-container {
-    background-color: #6FB7E9;
-    width: 100%;
-    display: flex;
-}
-
 .card {
-	transition: all 2s ease-in;
-	max-width: 300px;
-	min-height: 250px;
-}
-
-.card:not(.card--flipped) {
-	transform: scale(0);
-	animation: card-expanded 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s 1 forwards;
-}
-
-@keyframes card-expanded {
-	0% {
-		transform: scale(0);
-	}
-	80% {
-		transform: scale(1.0005);
-	}
-	100% {
-		transform: scale(1);
-	}
+	transition: all 400ms linear;
+    min-height: 250px;
+    transform-style: preserve-3d;
 }
 
 .card.card--flipped {
-	transform: scale(0) rotateY(-180deg);
-	animation: card-rotated-n-flipped 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s 1 forwards;
+	transform: rotateY(-180deg);
+	/* animation: card-rotated-n-flipped 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s 1 forwards; */
 }
 
 @keyframes card-rotated-n-flipped {
 	0% {
-		transform: scale(0) rotateY(-180deg);
+		transform: rotateY(-180deg);
 	}
 	80% {
-		transform: scale(1.0005) rotateY(-180deg);
-	}
-	100% {
-		transform: scale(1) rotateY(-180deg);
-	}
-}
-
-.card.card--active {
-	transform: rotateY(0deg);
-	animation: card-rotated 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s 1 forwards;
-}
-
-@keyframes card-rotated {
-	0% {
-		transform: rotateY(0deg);
+		transform: rotateY(-180deg);
 	}
 	100% {
 		transform: rotateY(-180deg);
@@ -65,12 +28,13 @@ body {
 }
 
 .card-front, .card-back {
-	transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045);
-	background-color: #fbfff6;
+    transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    background-color: gray;
 }
 
 .card-front {
-	transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    background-color: gray;
 }
 
 .card:not(.card--active) .card-back {
@@ -83,4 +47,20 @@ body {
 	opacity: 1;
 	visibility: visible;
 	transform: rotateY(180deg);
+}
+
+.card-bar {
+    background-color: #444;
+    background-image: -webkit-linear-gradient(#444, #333);
+    background-image: linear-gradient(#444, #333 );
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    top: 10%;
+}
+
+.white-bar {
+    background-color: white;
+    width: 80%;
+    height: 40px;
 }

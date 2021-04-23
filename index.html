@@ -11,14 +11,13 @@
 
 <body class="flex w-100 justify-center mh4">
     <div class="flex flex-column justify-center mv3 w-40 ph5">
-        <div class="flex br3 pa4 relative" id="card-container"></div>
+        <div id="card-container"></div>
         <form class="flex flex-column w-100">
-            <!-- validations for card number - size-19 -->
-            <input type="text" class="mt3 pa2" placeholder="Card Number" name='card-number' size="19" />
+            <input type="text" class="mt3 pa2" placeholder="Card Number" name='card-number' />
             <input type="text" class="mt3 pa2" placeholder="Name" name='card-name' />
             <div class="flex justify-between mt3">
                 <input type="text" class="pa2 w-50 mr3" placeholder="Valid Thru" name='card-expiry' />
-                <input type="text" class="pa2 w-50" placeholder="CVV" name='card-cvv' size="3" />
+                <input type="text" class="pa2 w-50" placeholder="CVV" name='card-cvv' />
             </div>
             <button class="bg-blue white ttu bn no-outline mt3 pa2">Pay</button>
         </form>
