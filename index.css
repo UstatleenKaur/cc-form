@@ -4,6 +4,11 @@ body {
     font-family: 'Roboto';
 }
 
+.center-icon {
+    top: 50%;
+    transform:translateY(-50%);
+}
+
 .card {
 	transition: all 400ms linear;
     min-height: 250px;
@@ -34,7 +39,10 @@ body {
 
 .card-front {
     transform: rotateY(0deg);
-    background-color: gray;
+    /* background-color: gray; */
+    background: url('./images/bg-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .card:not(.card--active) .card-back {

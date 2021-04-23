@@ -84,7 +84,7 @@ Card.prototype.cNameChange = function (ev) {
             return;
         }
 
-    if ((ev.keyCode >= 65 && ev.keyCode <= 91) || (ev.keyCode >= 97 && ev.keyCode <= 123) || ev.keyCode == 32) {
+    if (((ev.keyCode >= 65 && ev.keyCode <= 91) || (ev.keyCode >= 97 && ev.keyCode <= 123) || ev.keyCode == 32) && ev.target.value.length < 25) {
         return;
     }
 
